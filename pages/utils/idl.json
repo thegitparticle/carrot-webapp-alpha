@@ -1,0 +1,135 @@
+{
+  "version": "0.1.0",
+  "name": "loyalty_powered_solpay_stealthversion",
+  "instructions": [
+    {
+      "name": "initialize",
+      "accounts": [
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "list",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "merchantUser",
+          "type": "bool"
+        },
+        {
+          "name": "accountBump",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "addBrand",
+      "accounts": [
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "list",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "listOwner",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "item",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "brandName",
+          "type": "string"
+        },
+        {
+          "name": "loyaltyScore",
+          "type": "u32"
+        },
+        {
+          "name": "loyaltyLevel",
+          "type": "u8"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "BrandsList",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "merchantUser",
+            "type": "bool"
+          },
+          {
+            "name": "brands",
+            "type": {
+              "vec": "publicKey"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "BrandItem",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "brandName",
+            "type": "string"
+          },
+          {
+            "name": "loyaltyScore",
+            "type": "u32"
+          },
+          {
+            "name": "loyaltyLevel",
+            "type": "u8"
+          }
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "address": "GJMF6ModaxGJqj6yyj9YYGrELa6EqUdNYoddxfSjY6ZT"
+  }
+}
