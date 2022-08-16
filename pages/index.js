@@ -74,7 +74,7 @@ export default function Home() {
 				></link>
 			</Head>
 
-			<main className="flex flex-1 bg-layout-900 w-full">
+			<main className="flex flex-1 bg-layout-900 justify-center items-center flex-col">
 				<ConnectionProvider endpoint={endpoint}>
 					<WalletProvider wallets={wallets} autoConnect>
 						<WalletModalProvider>
