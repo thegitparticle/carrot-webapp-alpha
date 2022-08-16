@@ -26,33 +26,39 @@ function LandingPage() {
 		return (
 			<div className="flex w-full sm:h-screen flex-col-reverse sm:flex-row justify-center items-center snap-start">
 				<div className="flex w-5/6 h-4/6 sm:h-screen relative flex-col items-center justify-center mt-4 mb-32 sm:mt-0 sm:mb-0">
-					<p className="text-layout-100 font-display font-bold text-xl flex-row flex">
-						A new
-						<p className="text-orange-500 font-black">
-							&nbsp; reason &nbsp;
-						</p>
-						to pay with
+					<p className="text-orange-500 font-display font-black text-7xl flex my-4">
+						Carrot 🥕
 					</p>
-					<div className="flex my-20">
-						<Image src="/solpay.png" width={135} height={50} />
-					</div>
-					<p className="text-layout-100 font-display font-bold text-xl flex-row flex">
-						Earn loyalty
+					<p className="text-layout-100 font-display font-bold text-xl flex-row flex my-4">
+						Earn
 						<p className="text-orange-500 font-black">
-							&nbsp; score & NFTs &nbsp
+							&nbsp; loyalty score NFTs &nbsp;
 						</p>
-						automatically
+						automatically from your fav brands!
+					</p>
+					<p className="text-layout-100 font-display font-bold text-xl flex-row flex my-4">
+						Just pay using Solana Pay & come here to mint them.
 					</p>
 				</div>
-				<div className="flex w-5/6 h-screen relative items-center justify-center my-6 sm:my-0">
-					<div className="flex flex-row items-center">
-						<div className="">
+				<div className="flex w-5/6 h-screen relative items-center justify-center my-6 sm:my-0 flex-row">
+					<div className="flex flex-col items-center">
+						<div className="transition ease-in-out delay-150 rotate-12 translate-y-24 hover:translate-y-20 hover:scale-110 hover:rotate-0">
 							<Image
 								src="/nftcard1.png"
 								width={342}
 								height={400}
 							/>
 						</div>
+						<div className="transition ease-in-out delay-150 -rotate-12 hover:-translate-y-1 hover:scale-110 hover:rotate-0">
+							<Image
+								src="/nftcard2.png"
+								width={342}
+								height={400}
+							/>
+						</div>
+					</div>
+					<div className="transition ease-in-out delay-150 -rotate-45 -translate-x-24 hover:-translate-y-1 hover:scale-110 hover:rotate-12">
+						<Image src="/nftcard4.png" width={342} height={400} />
 					</div>
 				</div>
 			</div>
