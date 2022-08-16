@@ -11,7 +11,17 @@ module.exports = {
 			body: ["Kumbh Sans"],
 			display: ["Kumbh Sans"],
 		},
-		extend: {},
+		extend: {
+			colors: {
+				layout: {
+					100: "#FAFAFA",
+					300: "#EAEAEA",
+					500: "#333333",
+					700: "#191919",
+					900: "#090909",
+				},
+			},
+		},
 	},
 	plugins: [],
 };

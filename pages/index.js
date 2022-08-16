@@ -74,7 +74,7 @@ export default function Home() {
 				></link>
 			</Head>
 
-			<main className="flex flex-1 bg-black w-full">
+			<main className="flex flex-1 bg-layout-900 w-full">
 				<ConnectionProvider endpoint={endpoint}>
 					<WalletProvider wallets={wallets} autoConnect>
 						<WalletModalProvider>
@@ -84,7 +84,7 @@ export default function Home() {
 				</ConnectionProvider>
 			</main>
 
-			<footer className="flex items-center justify-center w-full h-20 bg-black border-t border-white/20">
+			{/* <footer className="flex items-center justify-center w-full h-20 border-t border-white/20">
 				<a
 					href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
 					target="_blank"
@@ -99,8 +99,8 @@ export default function Home() {
 							height={16}
 						/>
 					</span>
-				</a>
-			</footer>
+				</a> */}
+			{/* </footer> */}
 		</div>
 	);
 }

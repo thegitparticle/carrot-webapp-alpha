@@ -35,7 +35,7 @@ function HomePage() {
 	}
 
 	return (
-		<div className="flex flex-1 bg-black flex-col items-center">
+		<div className="flex flex-1 flex-col items-center">
 			<WalletStatusRenderComponent />
 		</div>
 	);
