@@ -29,6 +29,18 @@
         {
           "name": "logoLink",
           "type": "string"
+        },
+        {
+          "name": "level1Link",
+          "type": "string"
+        },
+        {
+          "name": "level2Link",
+          "type": "string"
+        },
+        {
+          "name": "level3Link",
+          "type": "string"
         }
       ]
     },
@@ -66,6 +78,10 @@
         },
         {
           "name": "loyaltyLevel",
+          "type": "u64"
+        },
+        {
+          "name": "mintedLevel",
           "type": "u64"
         }
       ]
@@ -178,6 +194,18 @@
           {
             "name": "logoLink",
             "type": "string"
+          },
+          {
+            "name": "level1NftLink",
+            "type": "string"
+          },
+          {
+            "name": "level2NftLink",
+            "type": "string"
+          },
+          {
+            "name": "level3NftLink",
+            "type": "string"
           }
         ]
       }
@@ -206,6 +234,10 @@
           {
             "name": "loyaltyLevel",
             "type": "u64"
+          },
+          {
+            "name": "mintedLevel",
+            "type": "u64"
           }
         ]
       }
@@ -219,6 +251,6 @@
     }
   ],
   "metadata": {
-    "address": "GJMF6ModaxGJqj6yyj9YYGrELa6EqUdNYoddxfSjY6ZT"
+    "address": "5jtwmP1bNjvEAu23qerh2WCzpULsqZJuGX5cFATbZBHS"
   }
 }

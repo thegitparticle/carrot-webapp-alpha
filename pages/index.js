@@ -33,25 +33,25 @@ require("@solana/wallet-adapter-react-ui/styles.css");
 
 export default function Home() {
 	// The network can be set to 'devnet', 'testnet', or 'mainnet-beta'.
-	const network = WalletAdapterNetwork.Devnet;
+	// const network = WalletAdapterNetwork.Devnet;
 
-	// You can also provide a custom RPC endpoint.
-	const endpoint = useMemo(() => clusterApiUrl(network), [network]);
+	// // You can also provide a custom RPC endpoint.
+	// const endpoint = useMemo(() => clusterApiUrl(network), [network]);
 
-	const wallets = useMemo(
-		() => [
-			/**
-			 * Select the wallets you wish to support, by instantiating wallet adapters here.
-			 *
-			 * Common adapters can be found in the npm package `@solana/wallet-adapter-wallets`.
-			 * That package supports tree shaking and lazy loading -- only the wallets you import
-			 * will be compiled into your application, and only the dependencies of wallets that
-			 * your users connect to will be loaded.
-			 */
-			new PhantomWalletAdapter(),
-		],
-		[]
-	);
+	// const wallets = useMemo(
+	// 	() => [
+	// 		/**
+	// 		 * Select the wallets you wish to support, by instantiating wallet adapters here.
+	// 		 *
+	// 		 * Common adapters can be found in the npm package `@solana/wallet-adapter-wallets`.
+	// 		 * That package supports tree shaking and lazy loading -- only the wallets you import
+	// 		 * will be compiled into your application, and only the dependencies of wallets that
+	// 		 * your users connect to will be loaded.
+	// 		 */
+	// 		new PhantomWalletAdapter(),
+	// 	],
+	// 	[]
+	// );
 
 	return (
 		<div className={styles.container}>
@@ -75,13 +75,13 @@ export default function Home() {
 			</Head>
 
 			<main className="flex flex-1 bg-layout-900 justify-center items-center flex-col">
-				<ConnectionProvider endpoint={endpoint}>
+				{/* <ConnectionProvider endpoint={endpoint}>
 					<WalletProvider wallets={wallets} autoConnect>
-						<WalletModalProvider>
-							<HomePage />
-						</WalletModalProvider>
+						<WalletModalProvider> */}
+				<HomePage />
+				{/* </WalletModalProvider>
 					</WalletProvider>
-				</ConnectionProvider>
+				</ConnectionProvider> */}
 			</main>
 
 			{/* <footer className="flex items-center justify-center w-full h-20 border-t border-white/20">

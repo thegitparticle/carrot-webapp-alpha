@@ -97,9 +97,8 @@ function DashboardPage() {
 			const program = new Program(idl, programID, provider);
 
 			let list = await program.account.loyalty.all();
-			console.log(list);
+			console.log(list[0].account.loyaltyScore.toNumber());
 			setLoyaltyAccounts(list);
-			console.log(loyaltyAccounts.length);
 		} catch (error) {
 			console.log("Error creating initializing new user:", error);
 		}
@@ -112,12 +111,29 @@ function DashboardPage() {
 	}, [connected]);
 
 	function ConsumerActivity() {
-		if (loyaltyAccounts && loyaltyAccounts.length > 0) {
+		function ShowLoyaltyAccount(account) {
+			console.log(account);
 			return (
 				<div className="flex flex-col w-5/6 h-fit px-20 py-20 bg-layout-700 rounded-2xl">
+					<Image
+						src={"/" + account.account.brandName + ".png"}
+						width={100}
+						height={100}
+						objectFit="cover"
+					/>
 					<p className="text-layout-100/80 font-display font-medium text-base">
-						loyaltyAccounts exist
+						{account.account.brandName}
 					</p>
+				</div>
+			);
+		}
+
+		if (loyaltyAccounts && loyaltyAccounts.length > 0) {
+			return (
+				<div>
+					{loyaltyAccounts.map((item) => (
+						<ShowLoyaltyAccount account={item.account} />
+					))}
 				</div>
 			);
 		} else {
@@ -147,6 +163,12 @@ function DashboardPage() {
 				<Header />
 				<ConsumerDetailsBlock />
 				<ConsumerActivity />
+				<Link
+					href="/CreateAccounts"
+					className="py-4 px-6 bg-green-500 text-lg text-white"
+				>
+					go to create accounts
+				</Link>
 			</div>
 		</div>
 	);
