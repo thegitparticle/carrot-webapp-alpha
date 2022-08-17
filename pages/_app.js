@@ -26,10 +26,6 @@ import {
 	WalletMultiButton,
 } from "@solana/wallet-adapter-react-ui";
 import { clusterApiUrl } from "@solana/web3.js";
-import {
-	createDefaultAuthorizationResultCache,
-	SolanaMobileWalletAdapter,
-} from "@solana-mobile/wallet-adapter-mobile";
 require("@solana/wallet-adapter-react-ui/styles.css");
 
 function MyApp({ Component, pageProps }) {

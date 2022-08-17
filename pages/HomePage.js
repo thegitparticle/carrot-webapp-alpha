@@ -18,7 +18,7 @@ import {
 } from "@solana/wallet-adapter-react-ui";
 require("@solana/wallet-adapter-react-ui/styles.css");
 import { Program, AnchorProvider, web3 } from "@project-serum/anchor";
-import idl from "./utils/idl.json";
+import idl from "../utils/idl.json";
 import DashboardPage from "./DashboardPage";
 import LandingPage from "./LandingPage";
 
