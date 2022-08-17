@@ -124,13 +124,22 @@ function DashboardPage() {
 					<p className="text-layout-100/80 font-display font-medium text-base">
 						{account.account.brandName}
 					</p>
+					<p className="text-layout-100/80 font-display font-medium text-base">
+						{String(account.account.loyaltyScore.toNumber())}
+					</p>
+					<p className="text-layout-100/80 font-display font-medium text-base">
+						{String(account.account.loyaltyLevel.toNumber())}
+					</p>
+					<p className="text-layout-100/80 font-display font-medium text-base">
+						{String(account.account.mintedLevel.toNumber())}
+					</p>
 				</div>
 			);
 		}
 
 		if (loyaltyAccounts && loyaltyAccounts.length > 0) {
 			return (
-				<div>
+				<div className="flex w-full justify-center">
 					{loyaltyAccounts.map((item) => (
 						<ShowLoyaltyAccount account={item.account} />
 					))}
@@ -163,12 +172,12 @@ function DashboardPage() {
 				<Header />
 				<ConsumerDetailsBlock />
 				<ConsumerActivity />
-				<Link
+				{/* <Link
 					href="/CreateAccounts"
 					className="py-4 px-6 bg-green-500 text-lg text-white"
 				>
 					go to create accounts
-				</Link>
+				</Link> */}
 			</div>
 		</div>
 	);
