@@ -44,21 +44,21 @@ function LandingPage() {
 					<div className="flex flex-col items-center">
 						<div className="transition ease-in-out delay-150 rotate-12 translate-y-24 hover:translate-y-20 hover:scale-110 hover:rotate-0">
 							<Image
-								src="/nftcard1.png"
+								src="/nftcards1.png"
 								width={342}
 								height={400}
 							/>
 						</div>
 						<div className="transition ease-in-out delay-150 -rotate-12 hover:-translate-y-1 hover:scale-110 hover:rotate-0">
 							<Image
-								src="/nftcard2.png"
+								src="/nftcards2.png"
 								width={342}
 								height={400}
 							/>
 						</div>
 					</div>
 					<div className="transition ease-in-out delay-150 -rotate-45 -translate-x-24 hover:-translate-y-1 hover:scale-110 hover:rotate-12">
-						<Image src="/nftcard4.png" width={342} height={400} />
+						<Image src="/nftcards3.png" width={342} height={400} />
 					</div>
 				</div>
 			</div>
@@ -68,7 +68,7 @@ function LandingPage() {
 	function Footer() {
 		return (
 			<div className="flex w-full justify-center items-center bg-dark border-t-2 border-layout-300/25 snap-end">
-				<p class="text-layout-300 font-display text-xs my-12">
+				<p className="text-layout-300 font-display text-xs my-12">
 					Carrot - Alpha
 				</p>
 			</div>
