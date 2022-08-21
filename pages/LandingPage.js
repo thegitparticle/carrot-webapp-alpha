@@ -53,21 +53,25 @@ function LandingPage() {
 					<div className="flex flex-col items-center">
 						<div className="transition ease-in-out delay-150 rotate-10 translate-y-24 hover:translate-y-20 hover:scale-110 hover:rotate-0">
 							<Image
-								src="/nftcards1.png"
+								src="/nftcards90_1.png"
 								width={342}
 								height={400}
 							/>
 						</div>
 						<div className="transition ease-in-out delay-150 -rotate-8 hover:-translate-y-1 hover:scale-110 hover:rotate-0">
 							<Image
-								src="/nftcards2.png"
+								src="/nftcards90_2.png"
 								width={342}
 								height={400}
 							/>
 						</div>
 					</div>
 					<div className="transition ease-in-out delay-150 -rotate-24 -translate-x-24 hover:-translate-y-1 hover:scale-110 hover:rotate-0">
-						<Image src="/nftcards3.png" width={342} height={400} />
+						<Image
+							src="/nftcards90_3.png"
+							width={342}
+							height={400}
+						/>
 					</div>
 				</div>
 			</div>
