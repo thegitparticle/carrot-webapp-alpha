@@ -35,17 +35,17 @@ function LandingPage() {
 							objectFit="fixed"
 						/>
 					</div>
-					<p className="text-layout-100 font-display font-bold text-xl flex-row flex my-4">
+					<p className="text-layout-100 font-display font-bold text-xl flex-row flex mt-4 mb-2">
 						Earn
 						<p className="text-carrot_orange-500 font-black">
 							&nbsp; loyalty score NFTs &nbsp;
 						</p>
 						automatically from your fav brands!
 					</p>
-					<p className="text-layout-100 font-display font-bold text-xl flex-row flex my-4">
+					<p className="text-layout-100 font-display font-bold text-xl flex-row flex mt-2 mb-4">
 						Just pay using Solana Pay & come here to mint them.
 					</p>
-					<p className="text-layout-100 font-display font-bold text-xl flex-row flex my-4">
+					<p className="text-layout-100/50 font-display font-bold text-xl flex-row flex my-4">
 						Coming soon to Solana Mainnet.
 					</p>
 				</div>
@@ -78,7 +78,7 @@ function LandingPage() {
 		return (
 			<div className="flex w-full justify-center items-center bg-dark border-t-2 border-layout-300/25 snap-end">
 				<p className="text-layout-300 font-display text-xs my-12">
-					Carrot - Alpha
+					© Carrot - Alpha Version on Solana Devnet
 				</p>
 			</div>
 		);
