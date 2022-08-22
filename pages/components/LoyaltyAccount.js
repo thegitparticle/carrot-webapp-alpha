@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import idl from "../../utils/idl.json";
-import { AnchorProvider, Program } from "@project-serum/anchor";
+import { AnchorProvider, Program, web3 } from "@project-serum/anchor";
 import {
 	useAnchorWallet,
 	useConnection,
 	useWallet,
 } from "@solana/wallet-adapter-react";
 import { PublicKey } from "@solana/web3.js";
+import * as splToken from "@solana/spl-token";
 
 const programID = new PublicKey(idl.metadata.address);
 
@@ -96,8 +97,123 @@ function LoyaltyAccount(props) {
 	}
 
 	function MintButton() {
-		function mintFunctionCall() {
-			console.log("mint a new nft");
+		async function mintFunctionCall() {
+			const provider = new AnchorProvider(connection, anchorWallet, {
+				preflightCommitment: "processed",
+			});
+
+			const program = new Program(idl, programID, provider);
+
+			const TOKEN_METADATA_PROGRAM_ID = new web3.PublicKey(
+				"metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s"
+			);
+
+			const lamports =
+				await provider.connection.getMinimumBalanceForRentExemption(
+					splToken.MINT_SIZE
+				);
+
+			const getMetadata = async (mint) => {
+				return (
+					await web3.PublicKey.findProgramAddress(
+						[
+							Buffer.from("metadata"),
+							TOKEN_METADATA_PROGRAM_ID.toBuffer(),
+							mint.toBuffer(),
+						],
+						TOKEN_METADATA_PROGRAM_ID
+					)
+				)[0];
+			};
+
+			const getMasterEdition = async (mint) => {
+				return (
+					await web3.PublicKey.findProgramAddress(
+						[
+							Buffer.from("metadata"),
+							TOKEN_METADATA_PROGRAM_ID.toBuffer(),
+							mint.toBuffer(),
+							Buffer.from("edition"),
+						],
+						TOKEN_METADATA_PROGRAM_ID
+					)
+				)[0];
+			};
+
+			const mintKey = web3.Keypair.generate();
+			const NftTokenAccount = await splToken.getAssociatedTokenAddress(
+				mintKey.publicKey,
+				publicKey
+			);
+			console.log("NFT Account: ", NftTokenAccount.toBase58());
+
+			const mint_tx = new web3.Transaction().add(
+				web3.SystemProgram.createAccount({
+					fromPubkey: publicKey,
+					newAccountPubkey: mintKey.publicKey,
+					space: splToken.MINT_SIZE,
+					programId: splToken.TOKEN_PROGRAM_ID,
+					lamports,
+				}),
+				splToken.createInitializeMintInstruction(
+					mintKey.publicKey,
+					0,
+					publicKey,
+					publicKey
+				),
+				splToken.createAssociatedTokenAccountInstruction(
+					publicKey,
+					NftTokenAccount,
+					publicKey,
+					mintKey.publicKey
+				)
+			);
+
+			console.log("mint txn setup");
+
+			const res = await provider.sendAndConfirm(mint_tx, [
+				mintKey,
+				// consumer,
+			]);
+			console.log(
+				await provider.connection.getParsedAccountInfo(
+					mintKey.publicKey
+				)
+			);
+
+			console.log("Account: ", res);
+			console.log("Mint key: ", mintKey.publicKey.toString());
+			console.log("User: ", publicKey.toString());
+
+			const metadataAddress = await getMetadata(mintKey.publicKey);
+			const masterEdition = await getMasterEdition(mintKey.publicKey);
+
+			console.log("Metadata address: ", metadataAddress.toBase58());
+			console.log("MasterEdition: ", masterEdition.toBase58());
+
+			const mintTx = await program.rpc.mintNft(
+				mintKey.publicKey,
+				String(nftDisplay),
+				`${props.Account.account.brandName} #${String(
+					props.Account.account.loyaltyLevel
+				)}`,
+				{
+					accounts: {
+						mintAuthority: publicKey,
+						mint: mintKey.publicKey,
+						tokenAccount: NftTokenAccount,
+						tokenProgram: splToken.TOKEN_PROGRAM_ID,
+						metadata: metadataAddress,
+						tokenMetadataProgram: TOKEN_METADATA_PROGRAM_ID,
+						payer: publicKey,
+						systemProgram: web3.SystemProgram.programId,
+						rent: web3.SYSVAR_RENT_PUBKEY,
+						masterEdition: masterEdition,
+					},
+				}
+			);
+
+			console.log("Your transaction signature:", mintTx);
 		}
 
 		if (
@@ -119,7 +235,7 @@ function LoyaltyAccount(props) {
 				<div className="my-6">
 					<button
 						onClick={mintFunctionCall}
-						disabled
+						// disabled
 						className="bg-carrot_green-500/25 py-4 px-8 rounded-md text-layout-100 font-semibold font-display"
 					>
 						Already Minted

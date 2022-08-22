@@ -1,0 +1,59 @@
+diff --git a/lib/esm/extensions/extensionType.mjs b/lib/esm/extensions/extensionType.mjs
+index 29c0b2605866c5592fe12b75d0a5598b156eb68e..341c33daf5de1516197a85abebeb5bffc4fc4821 100644
+--- a/lib/esm/extensions/extensionType.mjs
++++ b/lib/esm/extensions/extensionType.mjs
+@@ -2,11 +2,11 @@ import { ACCOUNT_SIZE } from './../state/account.mjs';
+ import { MINT_SIZE } from './../state/mint.mjs';
+ import { MULTISIG_SIZE } from './../state/multisig.mjs';
+ import { ACCOUNT_TYPE_SIZE } from './accountType.mjs';
+-import { MEMO_TRANSFER_SIZE } from './memoTransfer.mjs';
+-import { DEFAULT_ACCOUNT_STATE_SIZE } from './defaultAccountState.mjs';
++import { MEMO_TRANSFER_SIZE } from './memoTransfer/index.mjs';
++import { DEFAULT_ACCOUNT_STATE_SIZE } from './defaultAccountState/index.mjs';
+ import { MINT_CLOSE_AUTHORITY_SIZE } from './mintCloseAuthority.mjs';
+ import { IMMUTABLE_OWNER_SIZE } from './immutableOwner.mjs';
+-import { TRANSFER_FEE_CONFIG_SIZE, TRANSFER_FEE_AMOUNT_SIZE } from './transferFee.mjs';
++import { TRANSFER_FEE_CONFIG_SIZE, TRANSFER_FEE_AMOUNT_SIZE } from './transferFee/index.mjs';
+ import { NON_TRANSFERABLE_SIZE } from './nonTransferable.mjs';
+ import { INTEREST_BEARING_MINT_CONFIG_STATE_SIZE } from './interestBearingMint/state.mjs';
+ export var ExtensionType;
+diff --git a/lib/esm/extensions/index.mjs b/lib/esm/extensions/index.mjs
+index ee6127b7812997b6292fa6d01d1b7e310e9b0b04..d2afcfb4edbc7d796dd84371f3126cda75c0fd20 100644
+--- a/lib/esm/extensions/index.mjs
++++ b/lib/esm/extensions/index.mjs
+@@ -4,7 +4,7 @@ export * from './extensionType.mjs';
+ export * from './memoTransfer/index.mjs';
+ export * from './mintCloseAuthority.mjs';
+ export * from './immutableOwner.mjs';
+-export * from './interestBearingMint.mjs';
++export * from './interestBearingMint/index.mjs';
+ export * from './nonTransferable.mjs';
+ export * from './transferFee/index.mjs';
+ //# sourceMappingURL=index.js.map
+\ No newline at end of file
+diff --git a/lib/esm/extensions/interestBearingMint/actions.mjs b/lib/esm/extensions/interestBearingMint/actions.mjs
+index 59d987a5ea0dd36109fe65bc4b9e76936f4b3ccf..526dde8ea27ef428802267ea10969bcb1e52f829 100644
+--- a/lib/esm/extensions/interestBearingMint/actions.mjs
++++ b/lib/esm/extensions/interestBearingMint/actions.mjs
+@@ -1,7 +1,7 @@
+ import { Keypair, sendAndConfirmTransaction, SystemProgram, Transaction, } from '@solana/web3.js';
+ import { getSigners } from './../../actions/internal.mjs';
+ import { TOKEN_2022_PROGRAM_ID } from './../../constants.mjs';
+-import { createInitializeMintInstruction } from './../../instructions.mjs';
++import { createInitializeMintInstruction } from './../../instructions/index.mjs';
+ import { ExtensionType, getMintLen } from './../extensionType.mjs';
+ import { createInitializeInterestBearingMintInstruction, createUpdateRateInterestBearingMintInstruction, } from './instructions.mjs';
+ /**
+diff --git a/lib/esm/extensions/interestBearingMint/instructions.mjs b/lib/esm/extensions/interestBearingMint/instructions.mjs
+index 2911a0ad615c9798c67535d889ec4722c3cffa74..ae1c0d75744914faafb9bedf49b7df64c74fca97 100644
+--- a/lib/esm/extensions/interestBearingMint/instructions.mjs
++++ b/lib/esm/extensions/interestBearingMint/instructions.mjs
+@@ -2,7 +2,7 @@ import { struct, s16, u8 } from '@solana/buffer-layout';
+ import { publicKey } from '@solana/buffer-layout-utils';
+ import { TransactionInstruction } from '@solana/web3.js';
+ import { TOKEN_2022_PROGRAM_ID } from './../../constants.mjs';
+-import { TokenInstruction } from './../../instructions.mjs';
++import { TokenInstruction } from './../../instructions/index.mjs';
+ import { addSigners } from './../../instructions/internal.mjs';
+ export var InterestBearingMintInstruction;
+ (function (InterestBearingMintInstruction) {
