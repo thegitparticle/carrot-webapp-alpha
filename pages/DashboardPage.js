@@ -1,27 +1,19 @@
-import React, { useState, useCallback, useEffect } from "react";
-import { WalletNotConnectedError } from "@solana/wallet-adapter-base";
 import {
 	useAnchorWallet,
 	useConnection,
 	useWallet,
 } from "@solana/wallet-adapter-react";
 import {
-	Keypair,
-	SystemProgram,
-	Transaction,
-	PublicKey,
-} from "@solana/web3.js";
-import {
-	WalletModalProvider,
 	WalletDisconnectButton,
 	WalletMultiButton,
 } from "@solana/wallet-adapter-react-ui";
-require("@solana/wallet-adapter-react-ui/styles.css");
-import { Program, AnchorProvider, web3 } from "@project-serum/anchor";
-import idl from "../utils/idl.json";
-import { useInput } from "../utils/useInput";
-import Link from "next/link";
+import { Keypair, PublicKey } from "@solana/web3.js";
 import Image from "next/image";
+import Link from "next/link";
+import React, { useState } from "react";
+import idl from "../utils/idl.json";
+import ConsumerActivity from "./components/ConsumerActivity";
+require("@solana/wallet-adapter-react-ui/styles.css");
 
 /* create an account  */
 const baseAccount = Keypair.generate();
@@ -85,84 +77,6 @@ function DashboardPage() {
 				</p>
 			</div>
 		);
-	}
-
-	const [loyaltyAccounts, setLoyaltyAccounts] = useState([]);
-
-	async function getConsumerActivity() {
-		try {
-			const provider = new AnchorProvider(connection, anchorWallet, {
-				preflightCommitment: "processed",
-			});
-			const program = new Program(idl, programID, provider);
-
-			let list = await program.account.loyalty.all();
-			console.log(list[0].account.loyaltyScore.toNumber());
-			setLoyaltyAccounts(list);
-		} catch (error) {
-			console.log("Error creating initializing new user:", error);
-		}
-	}
-
-	useEffect(() => {
-		if (connected) {
-			getConsumerActivity();
-		}
-	}, [connected]);
-
-	function ConsumerActivity() {
-		function ShowLoyaltyAccount(account) {
-			console.log(account);
-			return (
-				<div className="flex flex-col w-5/6 h-fit px-20 py-20 bg-layout-700 rounded-2xl">
-					<Image
-						src={"/" + account.account.brandName + ".png"}
-						width={100}
-						height={100}
-						objectFit="cover"
-					/>
-					<p className="text-layout-100/80 font-display font-medium text-base">
-						{account.account.brandName}
-					</p>
-					<p className="text-layout-100/80 font-display font-medium text-base">
-						{String(account.account.loyaltyScore.toNumber())}
-					</p>
-					<p className="text-layout-100/80 font-display font-medium text-base">
-						{String(account.account.loyaltyLevel.toNumber())}
-					</p>
-					<p className="text-layout-100/80 font-display font-medium text-base">
-						{String(account.account.mintedLevel.toNumber())}
-					</p>
-				</div>
-			);
-		}
-
-		if (loyaltyAccounts && loyaltyAccounts.length > 0) {
-			return (
-				<div className="flex w-full justify-center">
-					{loyaltyAccounts.map((item) => (
-						<ShowLoyaltyAccount account={item.account} />
-					))}
-				</div>
-			);
-		} else {
-			return (
-				<div className="flex flex-col w-5/6 h-fit py-20 items-center bg-layout-700 rounded-2xl">
-					<p className="text-layout-100 font-display font-medium text-base my-4">
-						Seems like you have never paid to any of Carrot's brand
-						partners using Solana Pay.
-					</p>
-					<p className="text-layout-100 font-display font-medium text-base my-4">
-						Use Solana Pay and come back here to see your NFTs ready
-						to mint. Remember! the more you shop, the higher levels
-						of loyalty you reach!
-					</p>
-					<Link href="/">
-						<Image src="/solpay.png" width={135} height={50} />
-					</Link>
-				</div>
-			);
-		}
 	}
 
 	return (
