@@ -31,7 +31,15 @@ function ConsumerActivity() {
 			});
 			const program = new Program(idl, programID, provider);
 
-			let list = await program.account.loyalty.all();
+			let list = await program.account.loyalty.all([
+				{
+					memcmp: {
+						offset: 8,
+						bytes: publicKey.toBase58(),
+					},
+				},
+			]);
+			console.log(list);
 			setLoyaltyAccounts(list);
 		} catch (error) {
 			console.log("Error creating initializing new user:", error);
