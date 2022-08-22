@@ -11,6 +11,10 @@ import React, { useEffect, useState } from "react";
 import idl from "../../utils/idl.json";
 import LoyaltyAccount from "./LoyaltyAccount";
 
+const DynamicLoyaltyAccount = dynamic(() => import("./LoyaltyAccount"), {
+	ssr: false,
+});
+
 const programID = new PublicKey(idl.metadata.address);
 
 function ConsumerActivity() {
@@ -44,7 +48,7 @@ function ConsumerActivity() {
 		return (
 			<div className="flex flex-col items-center w-full justify-center">
 				{loyaltyAccounts.map((item) => (
-					<LoyaltyAccount Account={item} />
+					<DynamicLoyaltyAccount Account={item} />
 				))}
 			</div>
 		);
