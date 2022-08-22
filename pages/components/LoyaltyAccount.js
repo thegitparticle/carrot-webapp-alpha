@@ -64,7 +64,10 @@ function LoyaltyAccount(props) {
 		return (
 			<div className="flex flex-row mx-6 my-6 items-center">
 				<div className="flex rounded-full w-24 h-24 relative">
-					<Image src={brandLogo} layout="fill" />
+					<Image
+						src={"https://i.postimg.cc/TP2Lw0F5/Herme-s-svg.png"}
+						layout="fill"
+					/>
 				</div>
 				<p className="text-layout-100/80 font-display font-bold text-xl mx-4">
 					{props.Account.account.brandName}
@@ -194,6 +197,7 @@ function LoyaltyAccount(props) {
 			const mintTx = await program.rpc.mintNft(
 				mintKey.publicKey,
 				String(nftDisplay),
+				// "https://jsonkeeper.com/b/52JF",
 				`${props.Account.account.brandName} #${String(
 					props.Account.account.loyaltyLevel
 				)}`,
@@ -248,7 +252,11 @@ function LoyaltyAccount(props) {
 	function CurrentNFTEligibleImage() {
 		return (
 			<div className="flex scale-150 skew-y-6">
-				<Image src={nftDisplay} width={299} height={350} />
+				<Image
+					src={"https://i.postimg.cc/kMVBHBW8/hermes-1.png"}
+					width={299}
+					height={350}
+				/>
 			</div>
 		);
 	}
