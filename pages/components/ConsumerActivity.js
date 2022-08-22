@@ -41,10 +41,9 @@ function ConsumerActivity() {
 	}, [connected]);
 
 	if (loyaltyAccounts && loyaltyAccounts.length > 0) {
-		const reversedArray = loyaltyAccounts.reverse();
 		return (
 			<div className="flex flex-col items-center w-full justify-center">
-				{reversedArray.map((item) => (
+				{loyaltyAccounts.map((item) => (
 					<LoyaltyAccount Account={item} />
 				))}
 			</div>

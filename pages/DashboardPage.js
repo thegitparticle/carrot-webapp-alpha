@@ -14,6 +14,7 @@ import React, { useState } from "react";
 import idl from "../utils/idl.json";
 import ConsumerActivity from "./components/ConsumerActivity";
 require("@solana/wallet-adapter-react-ui/styles.css");
+import dynamic from "next/dynamic";
 
 /* create an account  */
 const baseAccount = Keypair.generate();
@@ -21,6 +22,13 @@ const opts = {
 	preflightCommitment: "processed",
 };
 const programID = new PublicKey(idl.metadata.address);
+
+const DynamicConsumerActivity = dynamic(
+	() => import("./components/ConsumerActivity"),
+	{
+		ssr: false,
+	}
+);
 
 function DashboardPage() {
 	const { connection } = useConnection();
@@ -85,7 +93,7 @@ function DashboardPage() {
 			<div className="absolute inset-0 flex flex-col snap-y snap-mandatory w-full h-screen overflow-y-scroll items-center">
 				<Header />
 				<ConsumerDetailsBlock />
-				<ConsumerActivity />
+				<DynamicConsumerActivity />
 				{/* <Link
 					href="/CreateAccounts"
 					className="py-4 px-6 bg-green-500 text-lg text-white"
