@@ -9,7 +9,6 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import idl from "../../utils/idl.json";
-import LoyaltyAccount from "./LoyaltyAccount";
 import dynamic from "next/dynamic";
 
 const DynamicLoyaltyAccount = dynamic(() => import("./LoyaltyAccount"), {

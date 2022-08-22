@@ -40,12 +40,12 @@ export default function Home() {
 				<link
 					rel="preconnect"
 					href="https://fonts.gstatic.com"
-					crossorigin
+					crossOrigin
 				/>
 				<link
 					href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100;200;300;500;600;700;800;900&display=swap"
 					rel="stylesheet"
-				></link>
+				/>
 			</Head>
 
 			<main className="flex flex-1 bg-layout-900 justify-center items-center flex-col">

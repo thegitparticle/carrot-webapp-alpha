@@ -98,4 +98,15 @@ function LoyaltyAccount(props) {
 	);
 }
 
+LoyaltyAccount.getInitialProps = async (ctx) => {
+	const dummyLoyaltyAccount = {
+		brandName: "",
+		loyaltyLevel: "",
+		loyaltyScore: "",
+		mintedLevel: "",
+		brandAddress: "",
+	};
+	return { Account: dummyLoyaltyAccount };
+};
+
 export default LoyaltyAccount;
